@@ -31,5 +31,7 @@ if ($isValid) {
     echo "<h4>Order Summary:</h4>";
     echo '<li>' .implode('</li><li>',$flavors) . '</li>';
     echo "<hr>";
+    echo "Total: $" . number_format(sizeOf($_POST['cupcakes']) * 3.50, 2);
+
 
 }
