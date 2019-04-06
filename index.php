@@ -3,14 +3,14 @@
  * Sukhveer Jawandha
  * 4/5/2019
  * 328/cupcakes/index.php
- * Cupcakes
+ * This file contains the form of cupcakes flavors where customer can order the cupcakes.
  */
 //Turn on error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 ?>
-<!doctype html>
+<!Doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -34,7 +34,7 @@ if (!empty($_POST)) {
 <form id="cupcake" method="post" action="process.php">
     <fieldset>
         <label>
-            Name:<input type="text" name="fullName" value="<?php echo $name?>">
+            Name:<input type="text" name="fullName" placeholder="Please input your name " value="<?php echo $name?>">
         </label>
         <legend>Type of Cupcake(s)</legend>
         <?php
