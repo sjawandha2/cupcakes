@@ -1,39 +1,59 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="UTF-8">
-    <title>Cupcake Fundraiser</title>
-</head>
-<body>
-
-<h2>Cupcake Fundraiser</h2>
-
 <?php
-print_r($post);
-/* create an associate array for flavors. */
-$flavors = array("grasshopper"=>"The Grasshopper", "maple"=>"Whiskey Maple Bacon",
-    "carrot"=>"Carrot Walnut", "caramel"=>"Salted Caramel Cupcake",
-    "velvet"=>"Red Velvet", "lemon"=>"Lemon Drop",
-    "tiramisu"=>"Tiramisu");
-$flavors = array();
+/*
+ * Sukhveer Jawandha
+ * 4/5/2019
+ * 328/cupcakes/index.php
+ * Cupcakes
+ */
+//Turn on error reporting
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
 ?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cupcakes</title>
 
-<form action="" method="post">
-<p>Your Name: </p>
-    <input type="text" name="name" placeholder="Please input your name.">
-<p>Cupcake flavors:</p>
+</head>
+<body>
+<h2>Cupcakes</h2>
+<?php
+// define variables
+$name = "";
 
-    <input type="checkbox" name="flavors[]" value="grasshopper "/>The Grasshopper<br/>
-    <input type="checkbox" name="flavors[]" value="maple "/>Whiskey Maple Bacon<br/>
-    <input type="checkbox" name="flavors[]" value="carrot "/>Carrot Walnut<br/>
-    <input type="checkbox" name="flavors[]" value="caramel "/>Salted Caramel Cupcake<br/>
-    <input type="checkbox" name="flavors[]" value="velvet "/>Red Velvet<br/>
-    <input type="checkbox" name="flavors[]" value="lemon "/>Lemon Drop<br/>
-    <input type="checkbox" name="flavors[]" value="tiramisu "/>Tiramisu<br/>
+// validate form
+if (!empty($_POST)) {
+    require 'process.php';
+}
+?>
+<form id="cupcake" method="post" action="process.php">
+    <fieldset>
+        <label>
+            Name:<input type="text" name="fullName" value="<?php echo $name?>">
+        </label>
+        <legend>Type of Cupcake(s)</legend>
+        <?php
+        // create an associative array
+        $flavors = array("grasshopper" => "The Grasshopper", "maple" => "Whiskey Maple Bacon",
+            "carrot" => "Carrot Walnut", "caramel" => "Salted Caramel Cupcake", "velvet" => "Red Velvet",
+            "lemon" => "Lemon Drop", "tiramisu" => "Tiramisu");
 
-    <input type="submit" value="Order" />
-
+        // loop through the array to display options
+        foreach ($flavors as $option => $text) {
+            echo "<label><input type='checkbox' value='" . $option . "' name='cupcakes[]'";
+            if (!empty($_POST['cupcakes'])) {
+                echo " checked='checked'";
+            }
+            echo "> " . $text . "</label><br>";
+        }
+        ?>
+    </fieldset>
+    <input type="submit" value="Order" id="submit">
 </form>
 </body>
 </html>
